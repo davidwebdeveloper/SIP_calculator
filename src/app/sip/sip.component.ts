@@ -9,20 +9,20 @@ import {ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 })
 export class SipComponent {
   principal!: number
-  rate!: number 
-  time!: number 
-  investment!:number
-  simpleinterest!:number
-  investpercentage!:number
-  returnpercentage!:number
-  constructor(){
+  rate!: number
+  time!: number
+  investment!: number
+  simpleinterest!: number
+  investpercentage!: number
+  returnpercentage!: number
+  constructor() {
     this.investpercentage = 1;
-  this.returnpercentage = 1;
-  this.principal = 1;
-  this.rate = 1;
-  this.time = 1;
-  this.investment = 1;
-  this.simpleinterest = 1;
+    this.returnpercentage = 1;
+    this.principal = 1;
+    this.rate = 1;
+    this.time = 1;
+    this.investment = 1;
+    this.simpleinterest = 1;
 
   }
 
@@ -30,11 +30,11 @@ export class SipComponent {
 
   options: any;
   calculateSimpleInterest(): number {
-    this.simpleinterest=(this.principal * this.rate * this.time) / 100
+    this.simpleinterest = (this.principal * this.rate * this.time) / 100
     return this.simpleinterest
   }
-  calculatetotalinvestment(){
-    this.investment=(this.principal*this.time*12)
+  calculatetotalinvestment() {
+    this.investment = (this.principal * this.time * 12)
     return this.investment
   }
 
