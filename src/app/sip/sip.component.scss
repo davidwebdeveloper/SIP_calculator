@@ -1,0 +1,63 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: gray;
+    height: 100%;
+    width: 100%;
+}
+
+.section {
+    width: 120rem;
+    height: 800px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+
+    .investment {
+        height: 65%;
+        width: 100%;
+        background-color: blue;
+        display: flex;
+
+        &__variables {
+            width: 60%;
+            height: 100%;
+            background-color: orange;
+        }
+
+        &__chart {
+            width: 40%;
+            height: 100%;
+            background-color: yellow;
+        }
+
+
+    }
+
+    .calculations {
+        height: 35%;
+        width: 100%;
+        background-color: red;
+
+        .total {
+            width: 60%;
+            height: 100%;
+            background-color: black;
+        }
+
+        .empty {
+            width: 40%;
+            height: 100%;
+        }
+
+
+    }
+
+
+
+
+
+}

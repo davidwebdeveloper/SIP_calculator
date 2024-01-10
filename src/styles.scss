@@ -1,3 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import './vendors'
+@import './vendors';
+
+
+* {
+    margin: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+
+body {
+    font-size: 1.6rem;
+    font-weight: 400;
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+    box-sizing: border-box;
+
+}
