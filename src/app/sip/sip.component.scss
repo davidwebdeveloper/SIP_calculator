@@ -70,6 +70,26 @@
 
     }
 
+    .round {
+        position: relative;
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        small {
+            font-size: 1.2rem;
+        }
+
+        // background:
+        //     radial-gradient(closest-side, white 79%, transparent 80% 100%),
+        //     conic-gradient(hotpink 61%, pink 0);
+
+
+    }
+
 
 
 
