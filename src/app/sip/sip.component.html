@@ -2,8 +2,8 @@
     <div class="investment">
         <div class="investment__variables">
             <div>
-                <label for="principal">Principal Amount:</label>
-                <p-slider [(ngModel)]="principal" [min]="0" [max]="100000" [step]="500"
+                <label for="principal">Monthly subscription:</label>
+                <p-slider [(ngModel)]="principal" [min]="0" [max]="2000" [step]="100"
                     (onChange)="calculatepercentage()"></p-slider>
                 <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
@@ -15,14 +15,15 @@
             <div class="time">
                 <label for="time">Tenure (in months): <span>
                         <select name="time" id="" [(ngModel)]="time">
-                            <option>Choose plan</option>
-                            <option value="25">25</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                        </select></span></label>
-                <p-slider [(ngModel)]="time" [min]="25" [max]="50" [step]="5"
-                    (onChange)="calculatepercentage()"></p-slider>
+                            <option value="1" disabled hidden>Choose plan</option>
+                            <option value="25">ST</option>
+                            <option value="30">TT</option>
+                            <option value="40">FT</option>
+                            <option value="50">LT</option>
+                        </select>
+                    </span></label>
+                <!-- <p-slider [(ngModel)]="time" [min]="25" [max]="50" [step]="5"
+                    (onChange)="calculatepercentage()"></p-slider> -->
                 <!-- 
                 <div class="slider">
                     <div class="slider__range">
@@ -30,7 +31,7 @@
                     </div>
                     <div class="break"></div>
                 </div> -->
-                <span>{{ time }} months</span>
+                <span *ngIf="time>1">{{ time }} months</span>
             </div>
         </div>
         <div class="investment__chart">
@@ -45,7 +46,7 @@
     <div class="calculations">
         <div class="total">
             <div>
-                Total Investment: {{ calculatetotalinvestment() | currency:'INR':'symbol':'1.2-2' }}
+                Chit value: {{ calculatetotalinvestment() | currency:'INR':'symbol':'1.2-2' }}
             </div>
             <div>
                 <p>Total Returns: {{ calculateSimpleInterest() | currency:'INR':'symbol':'1.2-2' }}</p>
