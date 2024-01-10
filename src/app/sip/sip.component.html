@@ -2,14 +2,36 @@
     <section class="section section__calculator">
         <div class="investment">
             <div class="investment__variables">
-
+                <div>
+                    <label for="principal">Principal Amount:</label>
+                        <p-slider [(ngModel)]="principal" [min]="0" [max]="1000" [step]="10"></p-slider>
+                    <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
+                  </div>
+                  <div>
+                    <label for="rate">Rate of Interest:</label>
+                        <p-slider [(ngModel)]="rate" [min]="0" [max]="100"></p-slider>
+                    <span>{{ rate | number:'1.1-1' }}%</span>
+                  </div>
+                  <div>
+                    <label for="time">Tenure (in years):</label>
+                    <p-slider [(ngModel)]="time" [min]="1" [max]="20"></p-slider>
+                    <span>{{ time }} years</span>
+                  </div>
             </div>
             <div class="investment__chart"></div>
 
 
         </div>
         <div class="calculations">
-            <div class="total"></div>
+            <div class="total">
+                <div>
+                    Total amount:{{ calculatetotalinvestment()}}
+                </div>
+                <div>
+                  <p>Simple Interest: {{ calculateSimpleInterest() | currency:'INR':'symbol':'1.2-2' }}</p>
+                </div>
+            </div>
+
             <div class="empty"></div>
         </div>
 
