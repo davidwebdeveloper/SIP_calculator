@@ -3,20 +3,34 @@
         <div class="investment__variables">
             <div>
                 <label for="principal">Principal Amount:</label>
-                <p-slider [(ngModel)]="principal" [min]="0" [max]="1000" [step]="10"
+                <p-slider [(ngModel)]="principal" [min]="0" [max]="100000" [step]="500"
                     (onChange)="calculatepercentage()"></p-slider>
                 <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
             <div>
                 <label for="rate">Rate of Interest:</label>
-                <p-slider [(ngModel)]="rate" [min]="0" [max]="100" (onChange)="calculatepercentage()"></p-slider>
+                <p-slider [(ngModel)]="rate" [min]="0" [max]="30" (onChange)="calculatepercentage()"></p-slider>
                 <span>{{ rate | number:'1.1-1' }}%</span>
             </div>
-            <div>
-                <label for="time">Tenure (in years):</label>
+            <div class="time">
+                <label for="time">Tenure (in months): <span>
+                        <select name="time" id="" [(ngModel)]="time">
+                            <option>Choose plan</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select></span></label>
                 <p-slider [(ngModel)]="time" [min]="25" [max]="50" [step]="5"
                     (onChange)="calculatepercentage()"></p-slider>
-                <span>{{ time }} years</span>
+                <!-- 
+                <div class="slider">
+                    <div class="slider__range">
+
+                    </div>
+                    <div class="break"></div>
+                </div> -->
+                <span>{{ time }} months</span>
             </div>
         </div>
         <div class="investment__chart">

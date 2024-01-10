@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 import { ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 
+
+interface month {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-sip',
   templateUrl: './sip.component.html',
   styleUrls: ['./sip.component.scss']
 })
-export class SipComponent {
+export class SipComponent implements OnInit {
   principal!: number
   rate!: number
   time!: number
@@ -15,6 +20,8 @@ export class SipComponent {
   simpleinterest!: number
   investpercentage!: number
   returnpercentage!: number
+  months!: month[];
+
   constructor() {
     this.investpercentage = 1;
     this.returnpercentage = 1;
@@ -25,16 +32,25 @@ export class SipComponent {
     this.simpleinterest = 1;
 
   }
+  ngOnInit(): void {
+    this.months = [
+      { name: '25', code: '25' },
+      { name: '30', code: '30' },
+      { name: '40', code: '40' },
+      { name: '50', code: '50' },
+
+    ];
+  }
 
   data: any;
 
   options: any;
   calculateSimpleInterest(): number {
-    this.simpleinterest = (this.principal * this.rate * this.time) / 100
+    this.simpleinterest = (this.principal * this.rate * (this.time / 12)) / 100
     return this.simpleinterest
   }
   calculatetotalinvestment() {
-    this.investment = (this.principal * this.time * 12)
+    this.investment = (this.principal * this.time)
     return this.investment
   }
 

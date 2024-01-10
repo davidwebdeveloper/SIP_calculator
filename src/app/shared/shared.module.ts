@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SliderModule } from 'primeng/slider'
 import { ChartModule } from 'primeng/chart'
+import { DropdownModule } from 'primeng/dropdown'
 
 
 
@@ -13,6 +14,6 @@ import { ChartModule } from 'primeng/chart'
     ChartModule
 
   ],
-  exports: [SliderModule, ChartModule]
+  exports: [SliderModule, ChartModule, DropdownModule]
 })
 export class SharedModule { }

@@ -28,6 +28,13 @@
                 gap: 1rem;
             }
 
+            .time {
+                label {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
             // background-color: orange;
         }
 
@@ -38,18 +45,18 @@
             justify-content: center;
             flex-direction: column;
             align-items: center;
-
             gap: 2rem;
 
 
             .bars {
+                width: 100%;
                 display: flex;
-                gap: 1rem;
+                justify-content: space-around;
 
                 .bar {
-                    height: 2rem;
-                    width: 4rem;
-                    background-color: black;
+                    width: 50%;
+                    height: 3rem;
+                    // background-color: black;
                 }
             }
 
@@ -111,6 +118,46 @@
         //     conic-gradient(hotpink 61%, pink 0);
 
 
+    }
+
+
+    .slider {
+        position: relative;
+        width: 100%;
+        height: 1rem;
+        background-color: antiquewhite;
+        border-radius: 5px;
+
+        &__range {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background-color: blue;
+            border-radius: 5px;
+
+            // .break {
+            //     position: absolute;
+            //     top: 0;
+            //     left: 0;
+            //     width: 2rem;
+            //     height: 2rem;
+            //     background-color: yellow;
+            // }
+
+
+
+        }
+
+
+        // .break {
+        //     position: absolute;
+        //     border-radius: 50%;
+        //     top: 0;
+        //     left
+        //     width: 2rem;
+        //     height: 2rem;
+        //     background-color: red;
+        // }
     }
 
 
