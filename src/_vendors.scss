@@ -19,9 +19,10 @@ p-slider {
     }
 
     &-handle {
-        top: 0;
-        height: 1.5rem;
-        width: 1.5rem;
+
+        transform: translateY(-50%);
+        height: 2rem;
+        width: 2rem;
 
     }
 

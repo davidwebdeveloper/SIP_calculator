@@ -14,23 +14,33 @@
             </div>
             <div>
                 <label for="time">Tenure (in years):</label>
-                <p-slider [(ngModel)]="time" [min]="1" [max]="20" (onChange)="calculatepercentage()"></p-slider>
+                <p-slider [(ngModel)]="time" [min]="25" [max]="50" [step]="5"
+                    (onChange)="calculatepercentage()"></p-slider>
                 <span>{{ time }} years</span>
             </div>
         </div>
         <div class="investment__chart">
-<div #doughnutChart></div>
-
+            <div class="bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div #doughnutChart></div>
         </div>
     </div>
     <div class="calculations">
         <div class="total">
             <div>
-                Total amount:{{ calculatetotalinvestment()}}
+                Total Investment: {{ calculatetotalinvestment() | currency:'INR':'symbol':'1.2-2' }}
             </div>
             <div>
-                <p>Simple Interest: {{ calculateSimpleInterest() | currency:'INR':'symbol':'1.2-2' }}</p>
+                <p>Total Returns: {{ calculateSimpleInterest() | currency:'INR':'symbol':'1.2-2' }}</p>
             </div>
+            <div>
+                <p>Total Value: {{ calculateSimpleInterest() + calculatetotalinvestment()|
+                    currency:'INR':'symbol':'1.2-2' }}</p>
+            </div>
+
         </div>
 
         <div class="empty">
