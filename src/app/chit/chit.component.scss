@@ -1,0 +1,172 @@
+// }
+
+.section {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    background-color: blue;
+
+    background-color: white;
+
+
+
+    .investment {
+        height: 65%;
+        width: 100%;
+        display: flex;
+
+        &__variables {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .time {
+                label {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+
+
+            .principal {
+                display: flex;
+                justify-content: space-between;
+
+                input {
+                    padding: 1rem;
+                }
+
+            }
+
+            // background-color: orange;
+        }
+
+        &__chart {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+
+
+            .bars {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+
+                .bar {
+                    width: 50%;
+                    height: 3rem;
+                    // background-color: black;
+                }
+            }
+
+
+
+
+
+
+
+            // background-color: yellow;
+        }
+
+
+    }
+
+    .calculations {
+        display: flex;
+        height: 35%;
+        width: 100%;
+
+        // background-color: red;
+
+        .total {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+
+
+
+            // background-color: black;
+        }
+
+        .empty {
+            width: 40%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .bank-rate {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+
+    }
+
+    .round {
+        position: relative;
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        small {
+            font-size: 1.2rem;
+        }
+
+        // background:
+        //     radial-gradient(closest-side, white 79%, transparent 80% 100%),
+        //     conic-gradient(hotpink 61%, pink 0);
+
+
+    }
+
+
+    .slider {
+        position: relative;
+        width: 100%;
+        height: 1rem;
+        background-color: antiquewhite;
+        border-radius: 5px;
+
+        &__range {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background-color: blue;
+            border-radius: 5px;
+
+
+
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+}

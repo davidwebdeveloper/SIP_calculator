@@ -8,12 +8,16 @@ import { AppComponent } from './app.component';
 import { SipComponent } from './sip/sip.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChitComponent } from './chit/chit.component';
+import { NanToDashPipe } from './pipe/nan.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
     SipComponent,
-    NumberFormatPipe
+    NumberFormatPipe,
+    ChitComponent,
+    NanToDashPipe
   ],
   imports: [
     BrowserModule,
@@ -21,9 +25,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
-  exports: [NumberFormatPipe],
+  exports: [NumberFormatPipe, NanToDashPipe],
   providers: [],
   bootstrap: [AppComponent]
 })

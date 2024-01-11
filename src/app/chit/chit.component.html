@@ -1,0 +1,75 @@
+<section class="section">
+    <div class="investment">
+        <div class="investment__variables">
+            <div>
+                <label class="principal" for="principal">Monthly subscription: <input type="text"
+                        [(ngModel)]="principal"></label>
+                <p-slider [(ngModel)]="principal" [min]="400" [max]="200000" [step]="100"></p-slider>
+                <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
+            </div>
+            <div>
+                <label for="rate">Rate of Interest:</label>
+                <p-slider [(ngModel)]="rate" [min]="0" [max]="30"></p-slider>
+                <span>{{ rate | number:'1.1-1' }}%</span>
+            </div>
+            <div>
+                <label for="rate">Bid amount: <input type="text" [(ngModel)]="bidAmount"></label>
+                <p-slider [(ngModel)]="bidAmount" [min]="0" [max]="calculatetotalinvestment() * (95/100)"></p-slider>
+                <span>{{ bidAmount | number:'1.1-1' }}</span>
+            </div>
+            <div class="time">
+                <label for="time">Tenure (in months): <span>
+                        <select name="time" id="" [(ngModel)]="time">
+                            <option value="1" disabled hidden>Choose plan</option>
+                            <option value="25">ST</option>
+                            <option value="30">TT</option>
+                            <option value="40">FT</option>
+                            <option value="50">LT</option>
+                        </select>
+                    </span></label>
+                <span *ngIf="time>1">{{ time }} months</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="calculations">
+        <div class="total">
+            <div>
+                Chit value: {{ calculatetotalinvestment() | currency:'INR':'symbol':'1.2-2' }}
+            </div>
+            <div>Total Members: {{time}}</div>
+            <div>Auction Amount: {{calculatetotalinvestment()*(95/100) |currency:'INR':'symbol':'1.2-2'}}</div>
+            <div>Minimum Bid: {{calculatetotalinvestment() * (60/100) |currency:'INR':'symbol':'1.2-2'}}</div>
+            <div>Discount : {{(calculatetotalinvestment()*(95/100))-bidAmount}}</div>
+            <div>Returns per person: {{((calculatetotalinvestment()*(95/100))-bidAmount)/time | nanToDash}}</div>
+            <div>Actual montly pay by bid amount :
+                {{(principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time) | nanToDash}} </div>
+            <div>Amount payable for {{time}} months : {{time *
+                ((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)) | nanToDash}}</div>
+            <div>ROI :
+
+                {{
+                (((time *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))-bidAmount)/(time
+                *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))*100) | nanToDash}}%
+
+
+            </div>
+
+        </div>
+        <div class="empty">
+            <div class="bank-rate">
+                <label for="rate">Bank interest : <span>{{ bankRate | number:'1.1-1' }}%</span> </label>
+                <p-slider [(ngModel)]="bankRate" [min]="0" [max]="30" [step]=".5"></p-slider>
+
+            </div>
+            <div>Total Interest : {{(bidAmount * (bankRate / 100) * (time / 12)).toFixed(2)|
+                currency:'INR':'symbol':'1.2-2'}}</div>
+            <div>Amount paybale for {{time}} months in bank : {{calculateAmount().toFixed(2) |
+                currency:'INR':'symbol':'1.2-2'}}
+            </div>
+
+            <div></div>
+        </div>
+    </div>
+</section>
