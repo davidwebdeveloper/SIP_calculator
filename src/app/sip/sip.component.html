@@ -2,8 +2,9 @@
     <div class="investment">
         <div class="investment__variables">
             <div>
-                <label for="principal">Monthly subscription:</label>
-                <p-slider [(ngModel)]="principal" [min]="0" [max]="2000" [step]="100"
+                <label class="principal" for="principal">Monthly subscription: <input type="text"
+                        [(ngModel)]="principal"></label>
+                <p-slider [(ngModel)]="principal" [min]="0" [max]="200000" [step]="100"
                     (onChange)="calculatepercentage()"></p-slider>
                 <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
@@ -49,12 +50,21 @@
                 Chit value: {{ calculatetotalinvestment() | currency:'INR':'symbol':'1.2-2' }}
             </div>
             <div>
-                <p>Total Returns: {{ calculateSimpleInterest() | currency:'INR':'symbol':'1.2-2' }}</p>
+                <p>Total Interest: {{ calculateSimpleInterest() | currency:'INR':'symbol':'1.2-2' }}</p>
             </div>
             <div>
-                <p>Total Value: {{ calculateSimpleInterest() + calculatetotalinvestment()|
+                <p>Total Returns: {{ calculateSimpleInterest() + calculatetotalinvestment()|
                     currency:'INR':'symbol':'1.2-2' }}</p>
             </div>
+
+            <div>
+                <p>Annual Interest: {{( calculateSimpleInterest()/12) | currency:'INR':'symbol':'1.2-2' }}</p>
+            </div>
+
+            {{10000 | numberFormat}}
+
+
+
 
         </div>
 

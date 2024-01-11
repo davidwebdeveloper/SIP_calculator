@@ -25,9 +25,9 @@ export class SipComponent implements OnInit {
   constructor() {
     this.investpercentage = 1;
     this.returnpercentage = 1;
-    this.principal = 1;
-    this.rate = 1;
-    this.time = 1;
+    this.principal = 0;
+    this.rate = 0;
+    this.time = 0;
     this.investment = 1;
     this.simpleinterest = 1;
 
@@ -46,7 +46,7 @@ export class SipComponent implements OnInit {
 
   options: any;
   calculateSimpleInterest(): number {
-    this.simpleinterest = (this.principal * this.rate * (this.time / 12)) / 100
+    this.simpleinterest = (this.principal * this.rate * (this.time)) / 100
     return this.simpleinterest
   }
   calculatetotalinvestment() {
@@ -83,14 +83,14 @@ export class SipComponent implements OnInit {
   }
 
   private updateChart() {
-    const data = [this.principal * this.time * 12, (this.principal * this.rate * this.time) / 100];
+    const data = [this.calculateSimpleInterest() + this.calculatetotalinvestment(), this.principal * this.time,];
 
-    const color = d3.scaleOrdinal(['#EEF0FF', '#5367FF']);
+    const color = d3.scaleOrdinal(['#5367FF', '#EEF0FF']);
 
     const pie = d3.pie();
 
     const arc = d3.arc()
-      .innerRadius(this.radius - 70)
+      .innerRadius(this.radius - 80)
       .outerRadius(this.radius);
 
 
@@ -110,7 +110,7 @@ export class SipComponent implements OnInit {
 
     arcs.append('text')
       .attr('transform', (d: any) => 'translate(' + arc.centroid(d) + ')')
-      .attr('dy', '0.35em')
+      .attr('dx', '-2em', 'dy', '1.5em')
       .text((d: any) => this.formatCurrency(d.data));
 
 

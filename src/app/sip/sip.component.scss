@@ -35,6 +35,17 @@
                 }
             }
 
+
+            .principal {
+                display: flex;
+                justify-content: space-between;
+
+                input {
+                    padding: 1rem;
+                }
+
+            }
+
             // background-color: orange;
         }
 
