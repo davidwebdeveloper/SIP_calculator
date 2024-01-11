@@ -7,11 +7,11 @@
                 <p-slider [(ngModel)]="principal" [min]="400" [max]="200000" [step]="100"></p-slider>
                 <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
-            <div>
+            <!-- <div>
                 <label for="rate">Rate of Interest:</label>
                 <p-slider [(ngModel)]="rate" [min]="0" [max]="30"></p-slider>
                 <span>{{ rate | number:'1.1-1' }}%</span>
-            </div>
+            </div> -->
             <div>
                 <label for="rate">Bid amount: <input type="text" [(ngModel)]="bidAmount"></label>
                 <p-slider [(ngModel)]="bidAmount" [min]="0" [max]="calculatetotalinvestment() * (95/100)"></p-slider>
