@@ -5,7 +5,7 @@
                 <div class="variable subscription">
                     <label class="principal" for="principal"><span>Monthly Subscription:</span>
                         <div class="text_container">
-                            <span class="symbol"> ₹ </span> <input type="text" class="form-control"
+                            <span class="symbol"> ₹ </span> <input type="number" class="form-control"
                                 [(ngModel)]="principal">
                         </div>
                     </label>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="time">
                     <div class="text">
-                        <label for="time">Tenure (in months):
+                        <label for="time">Tenure (in months)
                         </label>
                         <span>{{ time }} Months</span>
                     </div>
@@ -37,10 +37,10 @@
                 </div>
 
                 <div class="variable bid">
-                    <label for="rate"><span>Bid Amount:</span>
+                    <label for="rate"><span>Bid Amount</span>
                         <div class="text_container">
                             <span class="symbol"> ₹ </span>
-                            <input type="text" [(ngModel)]="bidAmount" class="form-control">
+                            <input type="number" [(ngModel)]="bidAmount" class="form-control">
                         </div>
                     </label>
                     <p-slider [(ngModel)]="bidAmount" [min]="0"
@@ -57,13 +57,13 @@
             <div class="card">
                 <div class="bank-rate">
                     <div class="text">
-                        <label for="rate">Bank interest :</label>
+                        <label for="rate">Bank interest</label>
                         <span>{{ bankRate | number:'1.1-1' }}%</span>
                     </div>
-                    <p-slider [(ngModel)]="bankRate" [min]="0" [max]="30" [step]=".5"></p-slider>
+                    <p-slider [(ngModel)]="bankRate" [min]="0" [max]="20" [step]=".1"></p-slider>
                     <div class=" price-range">
                         <p class="amount">0%</p>
-                        <p class="max">100%</p>
+                        <p class="max">20%</p>
                     </div>
 
                 </div>
