@@ -18,6 +18,16 @@ p-slider {
     background-color: #FAFBFC;
     border: 1px solid #DFE1E6;
 
+    .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {
+        color: #495057;
+        background: #dee2e6;
+    }
+
+    &-items-wrapper {
+        // padding-left: 6px;
+        font-size: 1.3rem;
+    }
+
     .p-inputtext {
         font-size: 1.3rem;
         color: #001E2B;
@@ -33,6 +43,10 @@ p-slider {
         padding: 0;
     }
 }
+
+
+
+
 
 
 .p-slider {
