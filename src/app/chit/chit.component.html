@@ -7,11 +7,7 @@
                 <p-slider [(ngModel)]="principal" [min]="400" [max]="200000" [step]="100"></p-slider>
                 <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
             </div>
-            <div>
-                <label for="rate">Rate of Interest:</label>
-                <p-slider [(ngModel)]="rate" [min]="0" [max]="30"></p-slider>
-                <span>{{ rate | number:'1.1-1' }}%</span>
-            </div>
+
             <div>
                 <label for="rate">Bid amount: <input type="text" [(ngModel)]="bidAmount"></label>
                 <p-slider [(ngModel)]="bidAmount" [min]="0" [max]="calculatetotalinvestment() * (95/100)"></p-slider>
@@ -29,6 +25,25 @@
                     </span></label>
                 <span *ngIf="time>1">{{ time }} months</span>
             </div>
+        </div>
+        <!-- <div>
+            <label for="rate">Rate of Interest:</label>
+            <p-slider [(ngModel)]="rate" [min]="0" [max]="30"></p-slider>
+            <span>{{ rate | number:'1.1-1' }}%</span>
+        </div> -->
+        <div class="empty">
+            <div class="bank-rate">
+                <label for="rate">Bank interest : <span>{{ bankRate | number:'1.1-1' }}%</span> </label>
+                <p-slider [(ngModel)]="bankRate" [min]="0" [max]="30" [step]=".5"></p-slider>
+
+            </div>
+            <div>Total Interest : {{(bidAmount * (bankRate / 100) * (time / 12)).toFixed(2)|
+                currency:'INR':'symbol':'1.2-2'}}</div>
+            <div>Amount paybale for {{time}} months in bank : {{calculateAmount().toFixed(2) |
+                currency:'INR':'symbol':'1.2-2'}}
+            </div>
+
+            <div></div>
         </div>
 
     </div>
@@ -57,19 +72,6 @@
             </div>
 
         </div>
-        <div class="empty">
-            <div class="bank-rate">
-                <label for="rate">Bank interest : <span>{{ bankRate | number:'1.1-1' }}%</span> </label>
-                <p-slider [(ngModel)]="bankRate" [min]="0" [max]="30" [step]=".5"></p-slider>
 
-            </div>
-            <div>Total Interest : {{(bidAmount * (bankRate / 100) * (time / 12)).toFixed(2)|
-                currency:'INR':'symbol':'1.2-2'}}</div>
-            <div>Amount paybale for {{time}} months in bank : {{calculateAmount().toFixed(2) |
-                currency:'INR':'symbol':'1.2-2'}}
-            </div>
-
-            <div></div>
-        </div>
     </div>
 </section>
