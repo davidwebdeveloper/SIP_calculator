@@ -1,30 +1,52 @@
 <section class="section">
     <div class="investment">
         <div class="investment__variables">
-            <div>
-                <label class="principal" for="principal">Monthly subscription: <input type="text"
-                        [(ngModel)]="principal"></label>
-                <p-slider [(ngModel)]="principal" [min]="400" [max]="200000" [step]="100"></p-slider>
-                <span>{{ principal | currency:'INR':'symbol':'1.0-0' }}</span>
-            </div>
-
-            <div>
-                <label for="rate">Bid amount: <input type="text" [(ngModel)]="bidAmount"></label>
-                <p-slider [(ngModel)]="bidAmount" [min]="0" [max]="calculatetotalinvestment() * (95/100)"></p-slider>
-                <span>{{ bidAmount | number:'1.1-1' }}</span>
+            <div class="variable subscription">
+                <label class="principal" for="principal"><span>Monthly Subscription:</span>
+                    <div class="text_container">
+                        <span class="symbol"> ₹ </span> <input type="text" class="form-control" [(ngModel)]="principal">
+                    </div>
+                </label>
+                <p-slider [(ngModel)]="principal" [min]="400" [max]="200000" [step]="100" class="variable"></p-slider>
+                <div class=" price-range">
+                    <p class="amount">{{ principal | currency:'INR':'symbol':'1.0-0' }}</p>
+                    <p class="max">{{200000 | currency:'INR':'symbol':'1.0-0' }}</p>
+                </div>
             </div>
             <div class="time">
-                <label for="time">Tenure (in months): <span>
-                        <select name="time" id="" [(ngModel)]="time">
-                            <option value="1" disabled hidden>Choose plan</option>
-                            <option value="25">ST</option>
-                            <option value="30">TT</option>
-                            <option value="40">FT</option>
-                            <option value="50">LT</option>
-                        </select>
-                    </span></label>
-                <span *ngIf="time>1">{{ time }} months</span>
+                <div class="text">
+                    <label for="time">Tenure (in months):
+                    </label>
+                    <span>{{ time }} Months</span>
+                </div>
+                <!-- <div class="value">
+                    <select name="time" id="" [(ngModel)]="time" class="select__dropdown form-control">
+                        <option value=" 1" disabled hidden>Choose Plan</option>
+                        <option value="25">ST</option>
+                        <option value="30">TT</option>
+                        <option value="40">FT</option>
+                        <option value="50">LT</option>
+                    </select>
+                </div> -->
+
+                <p-dropdown [options]="tenures" [(ngModel)]="time" optionLabel="name" optionValue="code"
+                    placeholder="Choose a plan"></p-dropdown>
             </div>
+
+            <div class="variable bid">
+                <label for="rate"><span>Bid Amount:</span>
+                    <div class="text_container">
+                        <span class="symbol"> ₹ </span>
+                        <input type="text" [(ngModel)]="bidAmount" class="form-control">
+                    </div>
+                </label>
+                <p-slider [(ngModel)]="bidAmount" [min]="0" [max]="calculatetotalinvestment() * (95/100)"></p-slider>
+                <div class=" price-range">
+                    <p class="amount">{{ bidAmount | currency:'INR':'symbol':'1.2-2'}}</p>
+                    <p class="max">{{calculatetotalinvestment() * (95/100)| currency:'INR':'symbol':'1.2-2'}}</p>
+                </div>
+            </div>
+
         </div>
         <!-- <div>
             <label for="rate">Rate of Interest:</label>
@@ -33,14 +55,33 @@
         </div> -->
         <div class="empty">
             <div class="bank-rate">
-                <label for="rate">Bank interest : <span>{{ bankRate | number:'1.1-1' }}%</span> </label>
+                <div class="text">
+                    <label for="rate">Bank interest :</label>
+                    <span>{{ bankRate | number:'1.1-1' }}%</span>
+                </div>
                 <p-slider [(ngModel)]="bankRate" [min]="0" [max]="30" [step]=".5"></p-slider>
+                <div class=" price-range">
+                    <p class="amount">0%</p>
+                    <p class="max">100%</p>
+                </div>
 
             </div>
-            <div>Total Interest : {{(bidAmount * (bankRate / 100) * (time / 12)).toFixed(2)|
-                currency:'INR':'symbol':'1.2-2'}}</div>
-            <div>Amount paybale for {{time}} months in bank : {{calculateAmount().toFixed(2) |
-                currency:'INR':'symbol':'1.2-2'}}
+            <div class="interest">
+                <div class='total-interest'>
+                    <p class="title">
+                        Total interest
+                    </p>
+                    <p class="content"> {{(bidAmount * (bankRate / 100) * (time / 12)).toFixed(2)|
+                        currency:'INR':'symbol':'1.2-2'}}</p>
+                </div>
+                <div class="amount">
+                    <p class="title">Amount paybale for {{time}} months in bank</p>
+                    <p class="content">
+                        {{calculateAmount().toFixed(2) |
+                        currency:'INR':'symbol':'1.2-2'}}
+                    </p>
+
+                </div>
             </div>
 
             <div></div>

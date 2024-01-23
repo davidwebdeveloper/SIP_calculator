@@ -6,6 +6,11 @@ interface month {
   code: string;
 }
 
+interface Tenure {
+  name: string;
+  code: number;
+}
+
 
 @Component({
   selector: 'app-chit',
@@ -23,6 +28,7 @@ export class ChitComponent {
   months!: month[];
   bidAmount!: number
   bankRate!: number
+  tenures!: Tenure[]
 
 
   constructor() {
@@ -44,6 +50,14 @@ export class ChitComponent {
       { name: '30', code: '30' },
       { name: '40', code: '40' },
       { name: '50', code: '50' },
+
+    ];
+
+    this.tenures = [
+      { name: 'ST', code: 25 },
+      { name: 'TT', code: 30 },
+      { name: 'FT', code: 40 },
+      { name: 'LT', code: 50 },
 
     ];
   }
