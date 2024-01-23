@@ -108,16 +108,66 @@
         display: flex;
         height: 100%;
         width: 40%;
-        background-color: gray;
+        // background-color: gray;
 
         // background-color: red;
 
         .total {
-            width: 60%;
+            width: 100%;
             height: 100%;
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            padding: 1.6rem;
+            .calciheader{
+                .heading{
+                    color: #42526E;
+                    font-size: 1.3rem;
+                }
+                .largetext{
+                    font-size: 2.4rem;
+                    color: #0747A6;
+                    text-align: end;
+                }
+                width: 100%;
+                height: 6.4rem;
+                display: flex;
+                justify-content: space-between;
+                // background-color: blueviolet;
+                .calcidiv{
+                   display: flex;
+                   flex-direction: column;
+                   gap: 4px;
+                }
+               
+            }
+            .line{
+                height: 1px;
+                align-self: stretch;
+                background: #D9D9D9;
+                
+                }
+                .calcybody{
+                    .calbodyp{
+                        color: #42526E;
+                        font-size: 1.2rem;
+                    }
+                    width: 100%;
+                    // background-color: cadetblue;
+                    height: 40vh;
+                    display: flex;
+                    flex-direction: column;
+                    gap:15px;
+                    .calbody{
+                        display: flex;
+                        justify-content: space-between;
+                        .calbodyspan{
+                            font-size: 1.4rem;
+                            color: #001E2B;
+                        }
+                    }
+                }
+
 
 
 
