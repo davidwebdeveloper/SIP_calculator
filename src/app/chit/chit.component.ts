@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import * as d3 from 'd3';
 
 interface month {
@@ -10,6 +10,15 @@ interface Tenure {
   name: string;
   code: number;
 }
+
+const PredictionData =
+  [
+    70000, 95000, 80000, 75000, 70000, 67000, 85000, 87000, 95000, 65000,
+    60000, 63000, 80000, 75000, 80000, 85000, 82000, 80000, 81000, 75000,
+    82000, 60000, 65000, 95000, 90000, 77000, 76000, 75000, 78000, 75000,
+    85000, 68000, 62000, 63000, 95000, 75000, 77000, 79000, 80000, 95000
+  ]
+
 
 
 @Component({
@@ -29,9 +38,12 @@ export class ChitComponent {
   bidAmount!: number
   bankRate!: number
   tenures!: Tenure[]
+  prediction!: number[]
+  predictionAmount!: number[]
+  finalValue: number = 0
 
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     // this.investpercentage = 1;
     // this.returnpercentage = 1;
     this.principal = 0;
@@ -41,6 +53,9 @@ export class ChitComponent {
     // this.simpleinterest = 1;
     this.bidAmount = 0
     this.bankRate = 0
+
+    this.predictionAmount = []
+
 
 
   }
@@ -60,11 +75,34 @@ export class ChitComponent {
       { name: 'LT', code: 50 },
 
     ];
+
+    this.prediction = PredictionData
+
   }
 
   data: any;
 
   options: any;
+
+  dynamic() {
+    this.cdr.detectChanges(); this.prediction[4] = this.bidAmount
+    console.log(this.prediction)
+    this.calcPredictionAmount()
+    console.log(this.predictionAmount)
+    this.calcTotalInvestment()
+  }
+
+  calcPredictionAmount() {
+    this.prediction.forEach((e, i) => {
+      this.predictionAmount[i] = this.principal - ((this.calculatetotalinvestment() * (95 / 100)) - e) / this.time
+    })
+  }
+
+  calcTotalInvestment() {
+    this.finalValue = this.predictionAmount.reduce((acc, e) => acc + e, 0)
+  }
+
+
 
   calculateSimpleInterest(): number {
     this.simpleinterest = (this.principal * this.rate * (this.time)) / 100

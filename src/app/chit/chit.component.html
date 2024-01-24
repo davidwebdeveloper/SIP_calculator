@@ -40,13 +40,15 @@
                     <label for="rate"><span>Bid Amount</span>
                         <div class="text_container">
                             <span class="symbol"> ₹ </span>
-                            <input type="number" [(ngModel)]="bidAmount" class="form-control">
+                            <input type="number" [(ngModel)]="bidAmount" class="form-control"
+                                (ngModelChange)="dynamic()">
                         </div>
                     </label>
                     <p-slider [(ngModel)]="bidAmount" [min]="calculatetotalinvestment() * (40/100)"
-                        [max]="calculatetotalinvestment() * (95/100)"></p-slider>
+                        [max]="calculatetotalinvestment() * (95/100)" (ngModelChange)="dynamic()"></p-slider>
                     <div class=" price-range">
-                        <p class="amount">{{ calculatetotalinvestment() * (40/100) | currency:'INR':'symbol':'1.2-2'}}</p>
+                        <p class="amount">{{ calculatetotalinvestment() * (40/100) | currency:'INR':'symbol':'1.2-2'}}
+                        </p>
                         <p class="max">{{calculatetotalinvestment() * (95/100)| currency:'INR':'symbol':'1.2-2'}}</p>
                     </div>
                 </div>
@@ -130,7 +132,8 @@
                         nanToDash }}</span>
                 </div>
                 <div class="calbody">
-                    <p class="calbodyp">Amount payable For {{time}} Months</p><span class="calbodyspan"> {{time *
+                    <p class="calbodyp">Amount payable For {{time}} Months</p>
+                    <span class="calbodyspan"> {{time *
                         ((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)) | nanToDash
                         }}</span>
                 </div>
@@ -148,3 +151,19 @@
 
     </div>
 </section>
+
+<table>
+    <tr>
+        <th>Month</th>
+        <th>Retures Amount per month</th>
+    </tr>
+    <tr *ngFor="let item of predictionAmount;index as i">
+        <td>{{i+1}}</td>
+        <td>
+            {{
+
+            item
+            }}</td>
+    </tr>
+    <tr>Amount Payable for {{time}} = {{finalValue}}</tr>
+</table>
