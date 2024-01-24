@@ -43,10 +43,10 @@
                             <input type="number" [(ngModel)]="bidAmount" class="form-control">
                         </div>
                     </label>
-                    <p-slider [(ngModel)]="bidAmount" [min]="0"
+                    <p-slider [(ngModel)]="bidAmount" [min]="calculatetotalinvestment() * (40/100)"
                         [max]="calculatetotalinvestment() * (95/100)"></p-slider>
                     <div class=" price-range">
-                        <p class="amount">{{ bidAmount | currency:'INR':'symbol':'1.2-2'}}</p>
+                        <p class="amount">{{ calculatetotalinvestment() * (40/100) | currency:'INR':'symbol':'1.2-2'}}</p>
                         <p class="max">{{calculatetotalinvestment() * (95/100)| currency:'INR':'symbol':'1.2-2'}}</p>
                     </div>
                 </div>
