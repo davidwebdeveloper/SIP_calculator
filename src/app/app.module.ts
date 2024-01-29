@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChitComponent } from './chit/chit.component';
 import { NanToDashPipe } from './pipe/nan.pipe'
+import { RoundDownPipe } from './pipe/roundup.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NanToDashPipe } from './pipe/nan.pipe'
     SipComponent,
     NumberFormatPipe,
     ChitComponent,
-    NanToDashPipe
+    NanToDashPipe,
+    RoundDownPipe
   ],
   imports: [
     BrowserModule,

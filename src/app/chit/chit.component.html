@@ -33,9 +33,21 @@
                     </select>
                 </div> -->
 
-                        <p-dropdown [options]="tenures" [(ngModel)]="time" optionLabel="name" optionValue="code"
-                            placeholder="Choose a plan"></p-dropdown>
+                        <p-dropdown [options]="tenures" [(ngModel)]="time" (onChange)="onTenureChange()"
+                            optionLabel="name" optionValue="code" placeholder="Choose a plan"></p-dropdown>
                     </div>
+                    <div class="time">
+                        <div class="text">
+                            <label for="time">Which month you bid?
+                            </label>
+
+                        </div>
+                        <p-dropdown [options]="investmentOptions" [(ngModel)]="investmentMonth"
+                            placeholder="Which month You bid? " optionLabel="name" optionValue="code">
+                        </p-dropdown>
+
+                    </div>
+
 
                     <div class="variable bid">
                         <label for="rate"><span>Bid Amount</span>
@@ -55,6 +67,8 @@
                             </p>
                         </div>
                     </div>
+
+
 
                 </div>
             </div>
@@ -159,15 +173,15 @@
         </div>
     </section>
 
-    <div style="display: flex; justify-content: space-between; gap:1rem" *ngIf="predictionAmount.length>1">
+    <div style="display: flex; justify-content: space-between; gap: 1rem" *ngIf="predictionAmount.length > 1">
         <!-- First Column -->
         <table class="col-6">
             <tr>
                 <th>Month</th>
-                <th>Retures Amount per month</th>
+                <th>Payable Amount per month</th>
             </tr>
-            <tr *ngFor="let item of predictionAmount.slice(0, predictionAmount.length/2); index as i">
-                <td class="month">{{i + 1}}</td>
+            <tr *ngFor="let item of predictionAmount.slice(0, predictionAmount.length / 2); index as i">
+                <td class="month">{{i + 1 | roundDown}}</td>
                 <td class="amount">{{item | currency:'INR':'symbol':'1.2-2'}}</td>
             </tr>
         </table>
@@ -176,16 +190,18 @@
         <table class="col-6">
             <tr>
                 <th>Month</th>
-                <th>Retures Amount per month</th>
+                <th>Payable Amount per month</th>
             </tr>
             <tr
-                *ngFor="let item of predictionAmount.slice(predictionAmount.length/2, predictionAmount.length); index as i">
-                <td class="month">{{i + (predictionAmount.length/2)+1}}</td>
+                *ngFor="let item of predictionAmount.slice(predictionAmount.length / 2, predictionAmount.length); index as i">
+                <td class="month">{{i + (predictionAmount.length / 2) + 1 | roundDown}}</td>
                 <td class="amount">{{item | currency:'INR':'symbol':'1.2-2'}}</td>
             </tr>
         </table>
+
         <div class='col-6'>Amount Payable for {{time}} = {{finalValue | currency:'INR':'symbol':'1.2-2'}}</div>
     </div>
+
 
     <!-- Display the total amount payable -->
 
