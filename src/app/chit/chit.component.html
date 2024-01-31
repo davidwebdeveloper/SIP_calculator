@@ -1,4 +1,5 @@
-<div class="container">
+<p-toggleButton [(ngModel)]="checked" onLabel="Yes" offLabel="No"></p-toggleButton>
+<div class="container" *ngIf="!checked">
     <section class="section">
         <div class="investment">
             <div class="investment__variables">
@@ -207,4 +208,229 @@
 
 
 
+</div>
+<div class="container" *ngIf="checked">
+    <section class="section">
+        <div class="investment">
+            <div class="investment__variables">
+                <div class="card">
+                    <div class="variable subscription">
+                        <label class="principal" for="principal"><span>Monthly Subscription:</span>
+                            <div class="text_container">
+                                <span class="symbol"> ₹ </span> <input type="number" class="form-control"
+                                    [(ngModel)]="principal">
+                            </div>
+                        </label>
+                        <p-slider [(ngModel)]="principal" [min]="400" [max]="200000" [step]="100"
+                            class="variable"></p-slider>
+                        <div class=" price-range">
+                            <p class="amount">{{ principal | currency:'INR':'symbol':'1.0-0' }}</p>
+                            <p class="max">{{200000 | currency:'INR':'symbol':'1.0-0' }}</p>
+                        </div>
+                    </div>
+                    <div class="time">
+                        <div class="text">
+                            <label for="time">Tenure (in months)
+                            </label>
+                            <span>{{ time }} Months</span>
+                        </div>
+                        <!-- <div class="value">
+                <select name="time" id="" [(ngModel)]="time" class="select__dropdown form-control">
+                    <option value=" 1" disabled hidden>Choose Plan</option>
+                    <option value="25">ST</option>
+                    <option value="30">TT</option>
+                    <option value="40">FT</option>
+                    <option value="50">LT</option>
+                </select>
+            </div> -->
+
+                        <p-dropdown [options]="tenures" [(ngModel)]="time" (onChange)="onTenureChange()"
+                            optionLabel="name" optionValue="code" placeholder="Choose a plan"></p-dropdown>
+                    </div>
+                    <div class="time">
+                        <div class="text">
+                            <label for="time">Which month you bid?
+                            </label>
+
+                        </div>
+                        <p-dropdown [options]="investmentOptions" [(ngModel)]="investmentMonth"
+                            placeholder="Which month You bid? " optionLabel="name" optionValue="code">
+                        </p-dropdown>
+
+                    </div>
+                    <div class="time">
+                        <div class="text">
+                            <label for="time">Which month you join?
+                            </label>
+
+                        </div>
+                        <p-dropdown [options]="investmentOptions" [(ngModel)]="joinmonth"
+                            placeholder="Which month You join? " optionLabel="name" optionValue="code">
+                        </p-dropdown>
+
+                    </div>
+
+
+                    <div class="variable bid">
+                        <label for="rate"><span>Bid Amount</span>
+                            <div class="text_container">
+                                <span class="symbol"> ₹ </span>
+                                <input type="number" [(ngModel)]="bidAmount" class="form-control"
+                                    (ngModelChange)="dynamic()">
+                            </div>
+                        </label>
+                        <p-slider [(ngModel)]="bidAmount" [min]="calculatetotalinvestment() * (40/100)"
+                            [max]="calculatetotalinvestment() * (95/100)" (ngModelChange)="dynamic()"></p-slider>
+                        <div class=" price-range">
+                            <p class="amount">{{ calculatetotalinvestment() * (40/100) |
+                                currency:'INR':'symbol':'1.2-2'}}
+                            </p>
+                            <p class="max">{{calculatetotalinvestment() * (95/100)| currency:'INR':'symbol':'1.2-2'}}
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="empty">
+                <div class="card">
+                    <div class="bank-rate">
+                        <div class="text">
+                            <label for="rate">Bank interest</label>
+                            <span>{{ bankRate | number:'1.1-1' }}%</span>
+                        </div>
+                        <p-slider [(ngModel)]="bankRate" [min]="0" [max]="20" [step]=".1"></p-slider>
+                        <div class=" price-range">
+                            <p class="amount">0%</p>
+                            <p class="max">20%</p>
+                        </div>
+
+                    </div>
+                    <div class="interest">
+                        <div class='total-interest'>
+                            <p class="title">
+                                Total interest
+                            </p>
+                            <p class="content"> {{(bidAmount * (bankRate / 100) * (time / 12)).toFixed(2)|
+                                currency:'INR':'symbol':'1.2-2'}}</p>
+                        </div>
+                        <div class="amount">
+                            <p class="title">Amount paybale for {{time}} months in bank</p>
+                            <p class="content">
+                                {{calculateAmount().toFixed(2) |
+                                currency:'INR':'symbol':'1.2-2'}}
+                            </p>
+
+                        </div>
+
+                    </div>
+                    <div class="text">
+                        <label for="rate">Interest</label>
+                        <span>{{ newinterest | number:'1.1-1' }}%</span>
+                        <p-slider [(ngModel)]="newinterest" [min]="5" [max]="20" [step]=".1"
+                            (ngModelChange)="interestcalculate()"></p-slider>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="calculations">
+            <div class="total">
+                <div class="calciheader">
+                    <div class="calcidiv">
+                        <p class="heading"> Chit Value</p>
+                        <span class="largetext">{{ calculatetotalinvestment() | currency:'INR':'symbol':'1.2-2'
+                            }}</span>
+                    </div>
+                    <div class="calcidiv">
+                        <p class="heading">Total Members</p>
+                        <span class="largetext">{{time}}</span>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="calcybody">
+                    <div class="calbody">
+                        <p class="calbodyp">Auction Amount</p><span
+                            class="calbodyspan">{{calculatetotalinvestment()*(95/100)
+                            |currency:'INR':'symbol':'1.2-2'}}</span>
+                    </div>
+                    <div class="calbody">
+                        <p class="calbodyp">Minimum Bid</p><span class="calbodyspan">{{calculatetotalinvestment() *
+                            (60/100)
+                            |currency:'INR':'symbol':'1.2-2'}}</span>
+                    </div>
+                    <div class="calbody">
+                        <p class="calbodyp">Discount</p> <span
+                            class="calbodyspan">{{(calculatetotalinvestment()*(95/100))-bidAmount
+                            |currency:'INR':'symbol':'1.2-2'}}</span>
+                    </div>
+                    <div class="calbody">
+                        <p class="calbodyp">Returns Per Person</p><span
+                            class="calbodyspan">{{((calculatetotalinvestment()*(95/100))-bidAmount)/time | nanToDash
+                            }}</span>
+                    </div>
+                    <div class="calbody">
+                        <p class="calbodyp">Actual Montly Pay By Bid Amount</p>
+                        <span class="calbodyspan"> {{(principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)
+                            |
+                            nanToDash }}</span>
+                    </div>
+                    <div class="calbody">
+                        <p class="calbodyp">Amount payable For {{time}} Months</p>
+                        <span class="calbodyspan"> {{time *
+                            ((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)) | nanToDash
+                            }}</span>
+
+                    </div>
+                    <div class="calbody">
+                        <p class="calbodyp">ROI</p>
+                        <span class="calbodyspan"> {{
+                            (((time
+                            *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))-bidAmount)/(time
+                            *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))*100) | nanToDash}}%
+                        </span>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <div style="display: flex; justify-content: space-between; gap: 1rem" *ngIf="predictionAmount.length > 1">
+        <!-- First Column -->
+        <table class="col-6">
+            <tr>
+                <th>Month</th>
+                <th>Payable Amount per month</th>
+            </tr>
+            <tr *ngFor="let item of predictionAmount.slice(0, predictionAmount.length / 2); index as i">
+                <td class="month">{{i + 1 | roundDown}}</td>
+                <td class="amount">{{item | currency:'INR':'symbol':'1.2-2'}}</td>
+            </tr>
+        </table>
+
+        <!-- Second Column -->
+        <table class="col-6">
+            <tr>
+                <th>Month</th>
+                <th>Payable Amount per month</th>
+            </tr>
+            <tr
+                *ngFor="let item of predictionAmount.slice(predictionAmount.length / 2, predictionAmount.length); index as i">
+                <td class="month">{{i + (predictionAmount.length / 2) + 1 | roundDown}}</td>
+                <td class="amount">{{item | currency:'INR':'symbol':'1.2-2'}}</td>
+            </tr>
+        </table>
+
+        <div class='col-6'>Amount Payable for {{time}} = {{finalValue | currency:'INR':'symbol':'1.2-2'}}</div>
+        <div class='col-6'>Amount Payable for {{time}}months with interest = {{finalval |
+            currency:'INR':'symbol':'1.2-2'}}</div>
+    </div>
 </div>

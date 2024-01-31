@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChitComponent } from './chit/chit.component';
 import { NanToDashPipe } from './pipe/nan.pipe'
 import { RoundDownPipe } from './pipe/roundup.pipe';
+import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { RoundDownPipe } from './pipe/roundup.pipe';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    ToggleButtonModule
 
   ],
   exports: [NumberFormatPipe, NanToDashPipe],

@@ -231,8 +231,11 @@ export class ChitComponent implements OnChanges {
   finalValue: number = 0
   investmentMonth: number = 0
   investmentOptions: any[] = []
-
-
+  checked: boolean = false;
+  newinterest!: number
+  newval: number[] = []
+  finalval!: number
+  joinmonth!:number
   constructor(private cdr: ChangeDetectorRef) {
     this.principal = 0;
     this.rate = 0;
@@ -354,8 +357,35 @@ export class ChitComponent implements OnChanges {
   OnChange() {
     console.log('change')
   }
-
-
-
-
+  interestcalculate() {
+    const val = this.prediction
+    console.log(val)
+    this.newval = val.map((e, i) => {
+      if (i < this.joinmonth - 1) {
+        return (((e * this.newinterest) / 100) + e)
+      }
+      else {
+        return e
+      }
+    })
+    console.log("val", this.newval)
+    this.dynamic2()
+  }
+  dynamic2() {
+    this.cdr.detectChanges(); this.prediction[this.investmentMonth - 1] = this.bidAmount
+    console.log(this.prediction)
+    this.calcPredictAmount()
+    console.log(this.predictionAmount)
+    this.calcTotalInvestment2()
+  }
+  calcPredictAmount() {
+    this.newval.forEach((e, i) => {
+      this.predictionAmount[i] = this.principal - ((this.calculatetotalinvestment() * (95 / 100)) - e) / this.time
+    })
+  }
+  calcTotalInvestment2() {
+    this.finalval = this.predictionAmount.reduce((acc, e) => acc + e, 0)
+    console.log("pred",this.predictionAmount)
+    console.log("final",this.finalval)
+  }
 }
