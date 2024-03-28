@@ -61,7 +61,7 @@
                         <p-slider [(ngModel)]="bidAmount" [min]="calculatetotalinvestment() * (40/100)"
                             [max]="calculatetotalinvestment() * (95/100)" (ngModelChange)="dynamic()"></p-slider>
                         <div class=" price-range">
-                            <p class="amount">{{ calculatetotalinvestment() * (40/100) |
+                            <p class="amount">{{ calculatetotalinvestment() * (60/100) |
                                 currency:'INR':'symbol':'1.2-2'}}
                             </p>
                             <p class="max">{{calculatetotalinvestment() * (95/100)| currency:'INR':'symbol':'1.2-2'}}
@@ -143,19 +143,19 @@
                     </div>
                     <div class="calbody">
                         <p class="calbodyp">Returns Per Person</p><span
-                            class="calbodyspan">{{((calculatetotalinvestment()*(95/100))-bidAmount)/time | nanToDash
+                            class="calbodyspan">{{((calculatetotalinvestment()*(95/100))-bidAmount)/time | nanToDash |
+                            currency:'INR':'symbol':'1.2-2'
                             }}</span>
                     </div>
                     <div class="calbody">
                         <p class="calbodyp">Actual Montly Pay By Bid Amount</p>
                         <span class="calbodyspan"> {{(principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)
                             |
-                            nanToDash }}</span>
+                            nanToDash | currency:'INR':'symbol':'1.2-2' }}</span>
                     </div>
                     <div class="calbody">
                         <p class="calbodyp">Amount payable For {{time}} Months</p>
-                        <span class="calbodyspan"> {{time *
-                            ((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)) | nanToDash
+                        <span class="calbodyspan"> {{finalValue | nanToDash | currency:'INR':'symbol':'1.2-2'
                             }}</span>
                     </div>
                     <div class="calbody">
@@ -163,7 +163,8 @@
                         <span class="calbodyspan"> {{
                             (((time
                             *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))-bidAmount)/(time
-                            *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))*100) | nanToDash}}%
+                            *((principal-((calculatetotalinvestment()*(95/100))-bidAmount)/time)))*100) | nanToDash
+                            | number:'1.2-2' }}%
                         </span>
 
                     </div>

@@ -9,7 +9,7 @@ import { SipComponent } from './sip/sip.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChitComponent } from './chit/chit.component';
-import { NanToDashPipe } from './pipe/nan.pipe'
+import { LastTwoDecimalsPipe, NanToDashPipe } from './pipe/nan.pipe'
 import { RoundDownPipe } from './pipe/roundup.pipe';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
@@ -20,7 +20,8 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     NumberFormatPipe,
     ChitComponent,
     NanToDashPipe,
-    RoundDownPipe
+    RoundDownPipe,
+    LastTwoDecimalsPipe
   ],
   imports: [
     BrowserModule,
