@@ -43,7 +43,7 @@
                             </label>
 
                         </div>
-                        <p-dropdown [options]="investmentOptions" [(ngModel)]="investmentMonth"
+                        <p-dropdown [options]="investmentOptions" [(ngModel)]="investmentMonth" (onChange)="onTenureChange()"
                             placeholder="Which month You bid? " optionLabel="name" optionValue="code">
                         </p-dropdown>
 
@@ -58,13 +58,13 @@
                                     (ngModelChange)="dynamic()">
                             </div>
                         </label>
-                        <p-slider [(ngModel)]="bidAmount" [min]="calculatetotalinvestment() * (40/100)"
-                            [max]="calculatetotalinvestment() * (95/100)" (ngModelChange)="dynamic()"></p-slider>
+                        <p-slider [(ngModel)]="bidAmount" [max]="calculatetotalinvestment() * (40/100)"
+                            [min]="calculatetotalinvestment() * (5/100)" (ngModelChange)="dynamic()"></p-slider>
                         <div class=" price-range">
-                            <p class="amount">{{ calculatetotalinvestment() * (60/100) |
+                            <p class="amount">{{ calculatetotalinvestment() * (5/100) |
                                 currency:'INR':'symbol':'1.2-2'}}
                             </p>
-                            <p class="max">{{calculatetotalinvestment() * (95/100)| currency:'INR':'symbol':'1.2-2'}}
+                            <p class="max">{{calculatetotalinvestment() * (40/100)| currency:'INR':'symbol':'1.2-2'}}
                             </p>
                         </div>
                     </div>
@@ -131,9 +131,17 @@
                             class="calbodyspan">{{calculatetotalinvestment()*(95/100)
                             |currency:'INR':'symbol':'1.2-2'}}</span>
                     </div>
+
                     <div class="calbody">
-                        <p class="calbodyp">Minimum Bid</p><span class="calbodyspan">{{calculatetotalinvestment() *
-                            (60/100)
+                        <p class="calbodyp">Minimum Bid</p><span
+                            class="calbodyspan">{{calculatetotalinvestment()*(5/100)
+                            |currency:'INR':'symbol':'1.2-2'}}</span>
+                    </div>
+
+
+                    <div class="calbody">
+                        <p class="calbodyp">Maximum Bid</p><span class="calbodyspan">{{calculatetotalinvestment() *
+                            (40/100)
                             |currency:'INR':'symbol':'1.2-2'}}</span>
                     </div>
                     <div class="calbody">
@@ -201,7 +209,9 @@
             </tr>
         </table>
 
-        <div class='col-6'>Amount Payable for {{time}} = {{finalValue | currency:'INR':'symbol':'1.2-2'}}</div>
+        <div class='col-6'>
+            <!-- Amount Payable for {{time}} = {{finalValue | currency:'INR':'symbol':'1.2-2'}} -->
+        </div>
     </div>
 
 
@@ -254,7 +264,7 @@
                             </label>
 
                         </div>
-                        <p-dropdown [options]="investmentOptions" [(ngModel)]="investmentMonth"
+                        <p-dropdown [options]="investmentOptions" [(ngModel)]="investmentMonth" (onChange)="onTenureChange()" 
                             placeholder="Which month You bid? " optionLabel="name" optionValue="code">
                         </p-dropdown>
 

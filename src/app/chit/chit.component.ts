@@ -296,7 +296,7 @@ export class ChitComponent implements OnChanges {
   data: any;
 
   options: any;
-
+  
   dynamic() {
 
     this.cdr.detectChanges(); this.prediction[this.investmentMonth - 1] = this.bidAmount
